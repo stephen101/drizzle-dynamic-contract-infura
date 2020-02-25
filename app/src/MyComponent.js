@@ -1,8 +1,7 @@
-import React, { Component } from "react";
-import logo from "./logo.png";
-import { newContextComponents } from "@drizzle/react-components"
+import { newContextComponents } from "@drizzle/react-components";
 import { DrizzleContext } from '@drizzle/react-plugin';
-import IERC20 from "./contracts/IERC20.json"
+import React, { Component } from "react";
+import IERC20 from "./contracts/IERC20.json";
 
 const { ContractData } = newContextComponents;
 
@@ -39,8 +38,10 @@ class MyComponent extends Component {
       <DrizzleContext.Consumer>
         {drizzleContext => {
           const { drizzle, drizzleState, initialized } = drizzleContext;
-          console.log(drizzle.contracts.WETH);
-          if (!initialized || !drizzle.contracts["WETH"].methods) {
+          console.log(">>>>>: render -> drizzleState", drizzleState)
+
+          if (!initialized || !drizzleState.contracts["WETH"]) {
+            // if (!initialized || !drizzle.contracts["WETH"].methods) {
             return "Loading...";
           }
           return (
